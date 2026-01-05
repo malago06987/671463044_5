@@ -1,5 +1,5 @@
 <?php 
-include "./database/connectDB.php"
+include "../database/connectDB.php"
 
 
 
@@ -24,7 +24,7 @@ include "./database/connectDB.php"
 
 <body>
     <header>
-        <?php include "./ref/navbar.php" ?>
+        <?php include "../ref/navbar.php" ?>
     </header>
     <main>
 
@@ -37,7 +37,7 @@ include "./database/connectDB.php"
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php include "./login/login.php" ?>
+                        <?php include "../login/login.php" ?>
                     </div>
 
                     <div class="modal-footer">
@@ -57,7 +57,7 @@ include "./database/connectDB.php"
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php include "./login/register.php" ?>
+                        <?php include "../login/register.php" ?>
                     </div>
 
                 
@@ -75,7 +75,7 @@ include "./database/connectDB.php"
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php include "./login/forget_password.php" ?>
+                        <?php include "../login/forget_password.php" ?>
                     </div>
 
                 
