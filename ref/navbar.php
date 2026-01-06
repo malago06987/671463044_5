@@ -1,9 +1,3 @@
-<?php 
-include "./database/connectDB.php"
-
-
-
-?>
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#showLogin">ลงทะเบียนเพื่อเข้าร่วม</a>
@@ -16,17 +10,29 @@ include "./database/connectDB.php"
           <a class="nav-link active" aria-current="page" href="index.php">หน้าหลัก</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">เเนะนำ</a>
+          <a class="nav-link" href="./Recommend.php">เเนะนำ</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             อีบุคทั้งหมด
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <?php
+            $result = $conn->query("SELECT * FROM categories ORDER BY category_name ASC");
+
+            while ($row = $result->fetch_assoc()) {
+              echo "
+            <li>
+        <a class='dropdown-item' href='index.php?cat_id={$row['category_id']}'>
+            {$row['category_name']}
+        </a>
+             </li>";
+            }
+            ?>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">รอคิดว่าจะใส่ไร</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -35,7 +41,7 @@ include "./database/connectDB.php"
       </ul>
       <form class="d-flex w-25">
         <input class="form-control me-2 " type="search" placeholder="ค้นหา" aria-label="Search">
-   
+
       </form>
     </div>
   </div>

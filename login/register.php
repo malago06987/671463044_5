@@ -9,9 +9,10 @@
     </div>
     <ul class="list-group list-group-flush">
       <form class="login-form" method="post" action="" id="registerForm" enctype="multipart/form-data">
-        <div class="text-start mt-0">
+        
+      <div class="text-start mt-0">
           <label>เลือกรูปภาพ:</label>
-          <input type="file" name="img_lecturer" class="form-control mb-2"
+          <input type="file" name="img_profile" class="form-control mb-2"
             accept="image/*" onchange="previewAddImage(event)">
         </div>
 
