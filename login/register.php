@@ -8,7 +8,7 @@
       <h5 class="card-title">เลือกรูปโปรไฟล์ของคุณ</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <form class="login-form" method="post" action="check/check_register.php" id="registerForm" enctype="multipart/form-data">
+      <form class="login-form" method="post" action="login/check/check_register.php" id="registerForm" enctype="multipart/form-data">
         
       <div class="text-start mt-0">
           <label>เลือกรูปภาพ:</label>
@@ -40,7 +40,7 @@
 
     </ul>
     <div class="card-body">
-      <a href="#" class="card-link " data-bs-toggle="modal" data-bs-target="#showLogin" data-bs-dismiss="modal">กลับสู่หน้าลงทะเบียน</a>
+      <a href="#" class="card-link " data-bs-toggle="modal" data-bs-target="#showLogin" data-bs-dismiss="modal">กลับสู่หน้าเข้าสู่ระบบ</a>
     </div>
   </div>
 </div>

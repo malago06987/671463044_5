@@ -11,3 +11,12 @@
             img.style.display = 'block';
         }
 
+
+
+
+    // ตรวจการสมัครเเละเด้งpopupมา
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('reg_success')) {
+        var myModal = new bootstrap.Modal(document.getElementById('loginForm'));
+        myModal.show();
+    }

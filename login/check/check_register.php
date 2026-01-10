@@ -8,8 +8,9 @@ $password  = $_POST['password'];
 $confirm  = $_POST['confirm_password'];
 
 // ---------------- อัปโหลดรูป ----------------
+$img_profile = "";
 if (!empty($_FILES['img_profile']['name'])) {
-    $target_dir = "../assets/images/profile/";
+    $target_dir = "../../assets/images/profile/";
     $ext = pathinfo($_FILES['img_profile']['name'], PATHINFO_EXTENSION);
     $new_name = uniqid("user_") . "." . $ext;
     $target_file = $target_dir . $new_name;
@@ -76,7 +77,7 @@ $insert_sql = "
 if ($conn->query($insert_sql) === TRUE) {
   echo "<script>
     alert('สมัครสมาชิกเรียบร้อยแล้ว');
-    window.location='../login.php';
+    window.location='../../index.php?reg_success=1';
   </script>";
 } else {
   echo "<script>
