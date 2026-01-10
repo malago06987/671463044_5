@@ -1,18 +1,34 @@
 <?php
-include "./database/connectDB.php";
+include "../../database/connectDB.php";
 
 // ---------------- รับค่าจากฟอร์ม ----------------
-$img_profile=
-$user_name = trim($_REQUEST['user_name']);
-$email   = trim($_REQUEST['email']);
-$password  = $_REQUEST['password'];
-$confirm  = $_REQUEST['confirm_password'];
+$user_name = trim($_POST['user_name']);
+$email   = trim($_POST['email']);
+$password  = $_POST['password'];
+$confirm  = $_POST['confirm_password'];
+
+// ---------------- อัปโหลดรูป ----------------
+if (!empty($_FILES['img_profile']['name'])) {
+    $target_dir = "../images/profile/";
+    $ext = pathinfo($_FILES['img_profile']['name'], PATHINFO_EXTENSION);
+    $new_name = uniqid("user_") . "." . $ext;
+    $target_file = $target_dir . $new_name;
+
+    if (move_uploaded_file($_FILES['img_profile']['tmp_name'], $target_file)) {
+        $img_profile = $new_name;
+    } else {
+        echo "<script>alert('อัปโหลดรูปไม่สำเร็จ'); history.back();</script>";
+        exit;
+    }
+}
+
 
 if(
     $user_name != "" &&
     $email != "" &&
     $password != "" &&
     $confirm != ""){
+
 
 
 
@@ -53,8 +69,8 @@ $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
 // ---------------- Insert ข้อมูล ----------------
 $insert_sql = "
-  INSERT INTO users (user_name, fullname,faculty_id, tel, email, password)
-  VALUES ('$user_name', '$fullname', '$faculty_id', '$tel', '$email', '$hash_password')
+  INSERT INTO users (user_name, email, password, img_user)
+  VALUES ('$user_name', '$email', '$hash_password', '$img_profile')
 ";
 
 if ($conn->query($insert_sql) === TRUE) {

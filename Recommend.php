@@ -24,7 +24,7 @@ include "./database/connectDB.php"
 
 <body>
     <header>
-        <?php include "./ref/navbar.php" ?>
+        <?php include "./include/navbar.php" ?>
     </header>
     <main>
 
@@ -89,7 +89,7 @@ include "./database/connectDB.php"
     </main>
 
     <footer>
-      <?php include "./ref/footer.php" ?>
+      <?php include "./include/footer.php" ?>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script
