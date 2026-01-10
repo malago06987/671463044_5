@@ -33,7 +33,7 @@
           <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="confirm password" required>
         </div>
         <div class="form-group mt-3">
-          <button type="submit" name="login" class="btn btn-primary w-100">ลงทะเบียน</button>
+          <button type="submit" name="register" class="btn btn-primary w-100">ลงทะเบียน</button>
         </div>
       </form>
 

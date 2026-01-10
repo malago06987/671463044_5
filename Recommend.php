@@ -103,7 +103,16 @@ include "./database/connectDB.php"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
 
-        <script src="./assets/js.js"></script>
+        <script src="assets/js.js"></script> 
+<script>
+  // modalหลังสมัคร
+  <?php if (isset($_GET['reg_success']) && $_GET['reg_success'] == 1): ?>
+    window.addEventListener('load', function() {
+      const loginModal = new bootstrap.Modal(document.getElementById('showLogin'));
+      loginModal.show();
+    });
+  <?php endif; ?>
+</script>
 </body>
 
 </html>
