@@ -15,8 +15,16 @@
 
 
     // ตรวจการสมัครเเละเด้งpopupมา
+    
+document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
+
     if (urlParams.has('reg_success')) {
-        var myModal = new bootstrap.Modal(document.getElementById('showLogin'));
-        myModal.show();
+        const modalEl = document.getElementById('showLogin');
+        if (modalEl) {
+            const loginModal = new bootstrap.Modal(modalEl);
+            loginModal.show();
+        }
     }
+});
+
