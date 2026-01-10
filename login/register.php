@@ -8,7 +8,7 @@
       <h5 class="card-title">เลือกรูปโปรไฟล์ของคุณ</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <form class="login-form" method="post" action="" id="registerForm" enctype="multipart/form-data">
+      <form class="login-form" method="post" action="check/check_register.php" id="registerForm" enctype="multipart/form-data">
         
       <div class="text-start mt-0">
           <label>เลือกรูปภาพ:</label>
