@@ -17,16 +17,16 @@
         </div>
 
         <div class="text-start mt-1">
-          <label for="user_name">ชื่อ</label>
-          <input type="text" name="user_name" id="user_name" class="form-control" placeholder="UserName" required>
+          <label for="reg_user_name">ชื่อ</label>
+          <input type="text" name="user_name" id="reg_user_name" class="form-control" placeholder="UserName" required>
         </div>
         <div class="text-start mt-2">
           <label for="password">อีเมล</label>
           <input type="email" name="email" id="email" class="form-control" placeholder="email" required>
         </div>
         <div class="text-start mt-2">
-          <label for="password">รหัสผ่าน</label>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+          <label for="reg_password">รหัสผ่าน</label>
+          <input type="password" name="password" id="reg_password" class="form-control" placeholder="Password" required>
         </div>
         <div class="text-start mt-2">
           <label for="password">คอนเฟิร์มรหัสผ่าน</label>

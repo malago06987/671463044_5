@@ -6,12 +6,12 @@
   <ul class="list-group list-group-flush">
      <form class="login-form" method="post" action="" id="loginForm">
                   <div class="text-start mt-2">
-                    <label for="user_name">ชื่อ</label>
-                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="UserName" required>
+                    <label for="login_user_name">ชื่อ</label>
+                    <input type="text" name="user_name" id="login_user_name" class="form-control" placeholder="UserName" required>
                   </div>
                   <div class="text-start mt-2">
-                    <label for="password">รหัสผ่าน</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                    <label for="login_password">รหัสผ่าน</label>
+                    <input type="password" name="password" id="login_password" class="form-control" placeholder="Password" required>
                   </div>
                   <div class="form-group mt-3">
                     <button type="submit" name="login" class="btn btn-primary w-100">ล็อคอิน</button>
