@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../../database/connectDB.php";
 if ((isset($_REQUEST['user_name'])) && isset($_REQUEST['password'])) {
 
@@ -42,7 +43,6 @@ if ((isset($_REQUEST['user_name'])) && isset($_REQUEST['password'])) {
             $_SESSION['img_user']  = $user['img_user'];
 
       echo "<script>
-      alert('เข้าสู่ระบบสำเร็จ');
       window.location='../../index.php';
     </script>";
     } else {
