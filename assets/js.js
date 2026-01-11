@@ -13,6 +13,11 @@
 
 
 
-
-
+  // เเก้ไขหมวดหมู่
+const editModal = document.getElementById('editCategoryModal');
+editModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    document.getElementById('edit_id').value = button.getAttribute('data-id');
+    document.getElementById('edit_name').value = button.getAttribute('data-name');
+});
 
