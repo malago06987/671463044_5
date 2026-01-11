@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include "../database/connectDB.php"
+include "../database/connectDB.php";
 
 
 
@@ -9,7 +9,7 @@ include "../database/connectDB.php"
 <html lang="en">
 
 <head>
-    <title>Admin</title>
+    <title>ภาพรวม</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -25,67 +25,87 @@ include "../database/connectDB.php"
 
 <body>
     <header>
-        <?php include "../include/navbar.php" ?>
+        <?php include "./include/navbarAdmin.php" ?>
     </header>
+
+
+
     <main>
+    <div class="container-fluid">
 
-        <!-- เข้าสู่ระบบ-->
-        <div class="modal fade" id="showLogin" tabindex="-1">
-            <div class="modal-dialog ">
-                <div class="modal-content rounded-5">
-                    <div class="modal-header bg-info rounded-top-5">
-                        <h5 class="modal-title text-white w-100 text-center">เข้าสู่ระบบ</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php include "../login/login.php" ?>
-                    </div>
 
-                    <div class="modal-footer">
-                        หากยังไม่ได้ลงทะเบียน<button type="button" class="btn btn-info"  data-bs-toggle="modal"data-bs-target="#showRegister" data-bs-dismiss="modal">ลงทะเบียน</button>
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-12 col-md-3 col-lg-2 bg-light border-end min-vh-100 p-3">
+          <div class="collapse d-md-block" id="adminSidebar">
+            <h6 class="text-uppercase text-muted mb-3 fw-bold">
+              หน้าต่างแอดมิน
+            </h6>
 
+            <nav class="nav nav-pills flex-column gap-1">
+  <a class="nav-link <?= ($_GET['page'] ?? 'overview') === 'overview' ? 'active' : 'text-dark' ?>"
+     href="dashboard.php?page=overview">
+    📊 ภาพรวม
+  </a>
+
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'users' ? 'active' : 'text-dark' ?>"
+     href="dashboard.php?page=users">
+    👤 ผู้ใช้
+  </a>
+
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'categories' ? 'active' : 'text-dark' ?>"
+     href="dashboard.php?page=categories">
+    ⚙️ หมวดหมู่
+  </a>
+
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'ebooks' ? 'active' : 'text-dark' ?>"
+     href="dashboard.php?page=ebooks">
+    📘 การเพิ่มอีบุค
+  </a>
+
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'approve' ? 'active' : 'text-dark' ?>"
+     href="dashboard.php?page=approve">
+    📰 การอนุมัติ
+  </a>
+
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'report' ? 'active' : 'text-dark' ?>"
+     href="dashboard.php?page=report">
+    📊 การรายงาน
+  </a>
+            </nav>
+          </div>
         </div>
 
- <!-- ลงทะเบียน-->
-        <div class="modal fade" id="showRegister" tabindex="-1">
-            <div class="modal-dialog ">
-                <div class="modal-content rounded-5">
-                    <div class="modal-header bg-info rounded-top-5">
-                        <h5 class="modal-title text-white w-100 text-center">ลงทะเบียน</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php include "../login/register.php" ?>
-                    </div>
 
-                
-                </div>
-            </div>
+    <div class="col-12 col-md-9 col-lg-10 p-4">
 
-        </div>
+<?php
+$page = $_GET['page'] ?? 'dashboard';
 
-         <!-- ลืมรหัส-->
-        <div class="modal fade" id="showForget" tabindex="-1">
-            <div class="modal-dialog ">
-                <div class="modal-content rounded-5">
-                    <div class="modal-header bg-info rounded-top-5">
-                        <h5 class="modal-title text-white w-100 text-center">ลืมรหัสผ่าน</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php include "../login/forget_password.php" ?>
-                    </div>
+$pages = [
+  'dashboard'   => 'dashboard.php',
+  'users'      => 'users.php',
+  'categories' => 'categories.php',
+  'ebooks'     => 'ebooks.php',
+  'approve'    => 'approve.php',
+  'report'     => 'report.php'
+];
 
-                
-                </div>
-            </div>
+if (array_key_exists($page, $pages)) {
+    include __DIR__ . '/pages/' . $pages[$page];
+} else {
+    echo "<h4>ไม่พบหน้านี้</h4>";
+}
+?>
 
-        </div>
+</div>
 
-หน้าเเอดมิน
+
+
+
+      </div>
+
+    </div>
     </main>
 
     <footer>
