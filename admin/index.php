@@ -37,44 +37,30 @@ include "../database/connectDB.php";
       <div class="row">
         <!-- Sidebar -->
         <div class="col-12 col-md-3 col-lg-2 bg-light border-end min-vh-100 p-3">
-          <div class="collapse d-md-block" id="adminSidebar">
+        
             <h6 class="text-uppercase text-muted mb-3 fw-bold">
               หน้าต่างแอดมิน
             </h6>
 
             <nav class="nav nav-pills flex-column gap-1">
-  <a class="nav-link <?= ($_GET['page'] ?? 'overview') === 'overview' ? 'active' : 'text-dark' ?>"
-     href="dashboard.php?page=overview">
-    📊 ภาพรวม
-  </a>
+  <a class="nav-link <?= ($_GET['page'] ?? 'dashboard') === 'dashboard' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=dashboard">📊 ภาพรวม</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'users' ? 'active' : 'text-dark' ?>"
-     href="dashboard.php?page=users">
-    👤 ผู้ใช้
-  </a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'user' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=user">👤 ผู้ใช้</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'categories' ? 'active' : 'text-dark' ?>"
-     href="dashboard.php?page=categories">
-    ⚙️ หมวดหมู่
-  </a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'catagory' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=catagory">⚙️ หมวดหมู่</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'ebooks' ? 'active' : 'text-dark' ?>"
-     href="dashboard.php?page=ebooks">
-    📘 การเพิ่มอีบุค
-  </a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'addEbook' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=addEbook">📘 การเพิ่มอีบุค</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'approve' ? 'active' : 'text-dark' ?>"
-     href="dashboard.php?page=approve">
-    📰 การอนุมัติ
-  </a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'approval' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=approval">📰 การอนุมัติ</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'report' ? 'active' : 'text-dark' ?>"
-     href="dashboard.php?page=report">
-    📊 การรายงาน
-  </a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'report' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=report">📊 การรายงาน</a>
+
             </nav>
-          </div>
+     
         </div>
+
+
+
 
 
     <div class="col-12 col-md-9 col-lg-10 p-4">
@@ -84,10 +70,10 @@ $page = $_GET['page'] ?? 'dashboard';
 
 $pages = [
   'dashboard'   => 'dashboard.php',
-  'users'      => 'users.php',
-  'categories' => 'categories.php',
-  'ebooks'     => 'ebooks.php',
-  'approve'    => 'approve.php',
+  'user'      => 'user.php',
+  'catagory' => 'catagory.php',
+  'addEbook'     => 'addEbook.php',
+  'approval'    => 'approval.php',
   'report'     => 'report.php'
 ];
 
