@@ -13,11 +13,16 @@
 
 
 
-  // เเก้ไขหมวดหมู่
-const editModal = document.getElementById('editCategoryModal');
-editModal.addEventListener('show.bs.modal', function (event) {
-    const button = event.relatedTarget;
-    document.getElementById('edit_id').value = button.getAttribute('data-id');
-    document.getElementById('edit_name').value = button.getAttribute('data-name');
-});
+ // ไลบารี่ตาราง
+$(document).ready(function() {
 
+    if ($('#myEbookTable').length) {
+        $('#myEbookTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json" 
+            },
+            "pageLength": 10, 
+            "order": [[4, "desc"]] 
+        });
+    }
+});

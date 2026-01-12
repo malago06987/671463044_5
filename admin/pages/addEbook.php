@@ -37,7 +37,7 @@
                         <label class="form-label">รูปหน้าปก</label>
                         <input type="file" name="image_title" class="form-control" accept="image/*" required>
                     </div>
-                    <button type="submit" name="add_ebook" class="btn btn-primary w-100">บันทึกข้อมูล</button>
+                    <button type="submit" name="add_ebook" class="btn btn-success w-100">บันทึกข้อมูล</button>
                 </form>
             </div>
         </div>
@@ -50,7 +50,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="myEbookTable">
                 <thead>
                     <tr>
                         <th>รูปปก</th>
@@ -62,12 +62,10 @@
                 </thead>
                 <tbody>
                     <?php
-        
-                    $my_id = $_SESSION['user_id'];
+
                     $sql = "SELECT ebooks.*, categories.category_name 
                             FROM ebooks 
                             LEFT JOIN categories ON ebooks.category_id = categories.category_id 
-                            WHERE ebooks.user_id = '$my_id' 
                             ORDER BY ebooks.created_at DESC";
                     
                     $result = mysqli_query($conn, $sql);

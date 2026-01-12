@@ -98,6 +98,16 @@
   </div>
 </div>
 
+<script>
+  const editCategoryModal = document.getElementById('editCategoryModal');
+  editCategoryModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const id = button.getAttribute('data-id');
+    const name = button.getAttribute('data-name');
+    document.getElementById('edit_id').value = id;
+    document.getElementById('edit_name').value = name;
+  });
+</script>
 
 
 

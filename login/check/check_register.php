@@ -77,7 +77,7 @@ $insert_sql = "
 if ($conn->query($insert_sql) === TRUE) {
   echo "<script>
     
-    window.location.href='../../index.php?reg_success=1';
+    window.location.href='../../index.php?reg_info=1';
   </script>";
 } else {
   echo "<script>

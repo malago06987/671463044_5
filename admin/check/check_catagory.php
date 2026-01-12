@@ -73,17 +73,27 @@ if (isset($_GET['delete_id'])) {
 // แก้ไข
 if (isset($_POST['update_category'])) {
     $id = (int) $_POST['category_id'];
-    $name = mysqli_real_escape_string($conn, $_POST['category_name']);
+    $name = trim($_POST['category_name'] ?? '');
 
-    $sql = "UPDATE categories 
-            SET category_name = '$name' 
-            WHERE category_id = $id";
-
-    if (mysqli_query($conn, $sql)) {
-        header("Location: ../index.php?page=catagory");
+    if ($name === '') {
+        echo "<script>alert('กรุณากรอกชื่อหมวดหมู่'); window.history.back();</script>";
         exit;
+    }
+
+    $stmt = $conn->prepare("UPDATE categories SET category_name = ? WHERE category_id = ?");
+    if ($stmt) {
+        $stmt->bind_param("si", $name, $id);
+        if ($stmt->execute()) {
+            header("Location: ../index.php?page=catagory");
+            exit;
+        } else {
+            $err = addslashes($stmt->error ?: $conn->error);
+            echo "<script>alert('แก้ไขไม่สำเร็จ: {$err}'); window.history.back();</script>";
+        }
+        $stmt->close();
     } else {
-        echo "แก้ไขไม่สำเร็จ";
+        $err = addslashes($conn->error);
+        echo "<script>alert('เกิดข้อผิดพลาด: {$err}'); window.history.back();</script>";
     }
 }
 ?>

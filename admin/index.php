@@ -11,7 +11,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 <html lang="en">
 
 <head>
-    <title>ภาพรวม</title>
+    <title>ตั้งค่าเเอดมิน</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -22,7 +22,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         rel="stylesheet" />
-        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 </head>
 
 <body>
@@ -45,17 +47,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             </h6>
 
             <nav class="nav nav-pills flex-column gap-1">
-  <a class="nav-link <?= ($_GET['page'] ?? 'dashboard') === 'dashboard' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=dashboard">📊 ภาพรวม</a>
+  <a class="nav-link  <?= ($_GET['page'] ?? 'dashboard') === 'dashboard' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=dashboard" ><i class="bi bi-tv"></i> ภาพรวม</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'user' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=user">👤 ผู้ใช้</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'user' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=user"><i class="bi bi-people"></i> ผู้ใช้</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'catagory' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=catagory">⚙️ หมวดหมู่</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'catagory' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=catagory"><i class="bi bi-tags"></i> หมวดหมู่</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'addEbook' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=addEbook">📘 การเพิ่มอีบุค</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'addEbook' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=addEbook"><i class="bi bi-bookmark-plus"></i> การเพิ่มอีบุค</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'approval' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=approval">📰 การอนุมัติ</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'approval' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=approval"><i class="bi bi-bookmark-check"></i> การอนุมัติ</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'report' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=report">📊 การรายงาน</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === 'report' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=report"><i class="bi bi-envelope-exclamation"></i> การรายงาน</a>
 
             </nav>
      
@@ -110,7 +112,12 @@ if (array_key_exists($page, $pages)) {
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
 
-        <script src="../assets/js.js"></script> 
+
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="../assets/js.js"></script> 
 </body>
 
 </html>
