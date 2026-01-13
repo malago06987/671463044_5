@@ -15,7 +15,7 @@ if (isset($_POST['add_ebook'])) {
     if (!empty($_FILES['image_title']['name'])) {
         $target_dir = "../../assets/images/ebook/"; 
         
-        $ext = pathinfo($_FILES['image_title']['name'], PATHinfo_EXTENSION);
+$ext = pathinfo($_FILES['image_title']['name'], PATHINFO_EXTENSION);
         $new_name = uniqid("ebook_") . "." . $ext;
         $target_file = $target_dir . $new_name;
 
@@ -33,7 +33,7 @@ if (isset($_POST['add_ebook'])) {
         if (mysqli_query($conn, $sql)) {
             echo "<script>
                     alert('เพิ่มอีบุคสำเร็จ!'); 
-                    window.location.href='../index.php?page=addEbook';
+                    window.location.href='../index.php?page=4';
                   </script>";
         } else {
             echo "<script>alert('เกิดข้อผิดพลาด: " . mysqli_error($conn) . "'); history.back();</script>";

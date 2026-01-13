@@ -39,7 +39,23 @@ $sql = "SELECT ebooks.*, categories.category_name, users.user_name
                                 <td class="text-center"><?= $no ?></td>
                                 <td><?= $row["title"] ?></td>
                                 <td><?= $row["category_name"] ?></td>
-                                <td> <?= $row["status"] ?>
+                                <td> 
+                                       <?php 
+if ($row['status'] == 'approve') {
+    $color = "bg-success"; 
+    $status = "อนุมัติแล้ว";
+} elseif ($row['status'] == 'waiting') {
+    $color = "bg-warning text-dark"; 
+    $status = "รอการตรวจสอบ";
+} else {
+    $color = "bg-danger"; 
+    $status = "ไม่อนุมัติ";
+}
+?>
+
+<span class="badge <?php echo $color; ?>">
+    <?php echo $status; ?>
+</span>
                                 </td>
                                 <td><?= date('d/m/Y', strtotime($row["created_at"])) ?></td>
                                 <td><?= $row["user_name"] ?></td>
@@ -58,19 +74,20 @@ $sql = "SELECT ebooks.*, categories.category_name, users.user_name
 
 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-info"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editCategoryModal"
-                                        data-id="<?= $row['category_id'] ?>"
-                                        data-name="<?= $row['category_name'] ?>">
-                                        อนุมัติ
-                                    </button>
+                             <?php if ($row['status'] == 'waiting'): ?>
+    <a href="check/check_approval.php?id=<?= $row['ebook_id'] ?>&status=approve" 
+       class="btn btn-sm btn-success" 
+       onclick="return confirm('ยืนยันการอนุมัติ')">
+       อนุมัติ
+    </a>
 
-                                    <a href="check/check_catagory.php?delete_id=<?= $row['ebook_id'] ?>"
-                                        class="btn btn-sm btn-danger"
-                                        onclick="return confirm('ยืนยันการไม่อนุมัต [<?= $row['title'] ?>] ?')">
-                                        ไม่อนุมัติ
-                                    </a>
+    <a href="check/check_approval.php?id=<?= $row['ebook_id'] ?>&status=reject" 
+       class="btn btn-sm btn-danger" 
+       onclick="return confirm('ยืนยันการไม่อนุมัติ')">
+       ไม่อนุมัติ
+    </a>
+<?php endif; ?>
+
                                 </td>
                             </tr>
                     <?php

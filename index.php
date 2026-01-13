@@ -25,92 +25,8 @@ include "./database/connectDB.php"
         <?php include "./include/navbar.php" ?>
     </header>
     <main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
-        <!-- เข้าสู่ระบบ-->
-        <div class="modal fade" id="showLogin" tabindex="-1">
-            <div class="modal-dialog ">
-                <div class="modal-content rounded-5">
-                    <div class="modal-header bg-info rounded-top-5">
-                        <h5 class="modal-title text-white w-100 text-center">เข้าสู่ระบบ</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php include "./login/login.php" ?>
-                    </div>
-
-                    <div class="modal-footer">
-                        หากยังไม่ได้ลงทะเบียน<button type="button" class="btn btn-info"  data-bs-toggle="modal"data-bs-target="#showRegister" data-bs-dismiss="modal">ลงทะเบียน</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
- <!-- ลงทะเบียน-->
-        <div class="modal fade" id="showRegister" tabindex="-1">
-            <div class="modal-dialog ">
-                <div class="modal-content rounded-5">
-                    <div class="modal-header bg-info rounded-top-5">
-                        <h5 class="modal-title text-white w-100 text-center">ลงทะเบียน</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php include "./login/register.php" ?>
-                    </div>
-
-                
-                </div>
-            </div>
-
-        </div>
-
-         <!-- ลืมรหัส-->
-        <div class="modal fade" id="showForget" tabindex="-1">
-            <div class="modal-dialog ">
-                <div class="modal-content rounded-5">
-                    <div class="modal-header bg-info rounded-top-5">
-                        <h5 class="modal-title text-white w-100 text-center">ลืมรหัสผ่าน</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php include "./login/forget_password.php" ?>
-                    </div>
-
-                
-                </div>
-            </div>
-
-        </div>
-
-
-
-
-
-     
-
-
-
-
-
-
-
-
-
+    <?php include "./include/modal.php" ?>
 
 
             <?php
@@ -145,10 +61,6 @@ include "./database/connectDB.php"
 
 
 
-            <div class="input-group mb-3 w-50 mx-auto mt-4">
-                <input type="search" class="form-control form-control-lg" id="search" placeholder="ค้นหา" aria-label="Search">
-            </div>
-
 
             <div class="container my-4">
 <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center" id="result">
@@ -176,16 +88,17 @@ include "./database/connectDB.php"
                 <?php echo $row['category_name']; ?>
             </span>
 
-            <h5 class="card-title fw-bold text-truncate">
-                <?php echo $row['title']; ?>
-            </h5>
+           <h5 class="card-title fw-bold d-block w-100">
+    <?php echo $row['title']; ?>
+</h5>
 
             <p class="card-text text-muted small mb-1">
                 โดย: <?php echo $row['author']; ?>
             </p>
 
             <p class="card-text text-muted small flex-grow-1">
-                <?php echo mb_substr($row['description'], 0, 60, 'UTF-8') . '...'; ?>
+               <?php echo mb_substr($row['description'], 0, 100).'...'; ?>
+
             </p>
 
             <a href="ebook_detail.php?id=<?php echo $row['ebook_id']; ?>" 

@@ -21,6 +21,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
             <li><a class="dropdown-item" href="profile.php">โปรไฟล์</a></li>
+            <li><a class="dropdown-item" href="up_ebook.php">การอัปโหลด</a></li>
             <li><a class="dropdown-item" href="./login/logout.php">ออกจากระบบ</a></li>
           </ul>
         </div>

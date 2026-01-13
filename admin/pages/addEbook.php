@@ -83,7 +83,22 @@
                                 </td>
                                 <td><?= $row["category_name"] ?></td>
                                 <td>
-                                <?= $row["status"] ?>
+                               <?php 
+if ($row['status'] == 'approve') {
+    $color = "bg-success"; 
+    $status = "อนุมัติแล้ว";
+} elseif ($row['status'] == 'waiting') {
+    $color = "bg-warning text-dark"; 
+    $status = "รอการตรวจสอบ";
+} else {
+    $color = "bg-danger"; 
+    $status = "ไม่อนุมัติ";
+}
+?>
+
+<span class="badge <?php echo $color; ?>">
+    <?php echo $status; ?>
+</span>
                                 </td>
                                 <td><?= date('d/m/Y', strtotime($row["created_at"])) ?></td>
                             </tr>
