@@ -19,7 +19,7 @@ if (isset($_POST['add_category'])) {
         $stmt->store_result();
         if ($stmt->num_rows > 0) {
             $stmt->close();
-            echo "<script>alert('ชื่อหมวดหมู่มีอยู่แล้ว'); window.location.href='../index.php?page=catagory';</script>";
+            echo "<script>alert('ชื่อหมวดหมู่มีอยู่แล้ว'); window.location.href='../index.php?page=1';</script>";
             exit;
         }
         $stmt->close();
@@ -84,7 +84,7 @@ if (isset($_POST['update_category'])) {
     if ($stmt) {
         $stmt->bind_param("si", $name, $id);
         if ($stmt->execute()) {
-            header("Location: ../index.php?page=catagory");
+            header("Location: ../index.php?page=1");
             exit;
         } else {
             $err = addslashes($stmt->error ?: $conn->error);

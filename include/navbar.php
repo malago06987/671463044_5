@@ -28,7 +28,7 @@
       </div>
     <?php else: ?>
       <a href="#"
-        class="btn btn-light btn-lg fw-semibold px-5 shadow-sm"
+        class="btn btn-light btn-lg fw-semibold px-5 shadow-sm "
         data-bs-toggle="modal"
         data-bs-target="#showLogin">
         เข้าสู่ระบบ
