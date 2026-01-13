@@ -50,9 +50,9 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php
-            $result = $conn->query("SELECT * FROM categories ORDER BY category_name ASC");
+            $result1 = $conn->query("SELECT * FROM categories ORDER BY category_name ASC");
 
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $result1->fetch_assoc()) {
               echo "
             <li>
         <a class='dropdown-item' href='index.php?cat_id={$row['category_id']}'>
@@ -68,17 +68,18 @@
           </ul>
         </li>
         <li class="nav-item">
-          <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="admin/index.php">หน้าปรับเเต่ง</a>
-        </li>
-      <?php endif; ?>
+<?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+  <li class="nav-item">
+    <a class="nav-link" href="admin/index.php">หน้าปรับเเต่ง</a>
+  </li>
+<?php endif; ?>
 
       </li>
       </ul>
-      <form class="d-flex flex-grow-1 ms-3">
-        <input class="form-control me-2" type="search" placeholder="ค้นหา">
-      </form>
+  
+        <div class="d-flex flex-grow-1 ms-3">
+                <input type="search" class="form-control form-control-lg" id="search" placeholder="ค้นหา" aria-label="Search">
+            </div>
     </div>
   </div>
 </nav>

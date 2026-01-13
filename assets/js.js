@@ -27,7 +27,24 @@ $(document).ready(function() {
     }
 });
 
-
-
+//ระบบค้นหา
+    $(document).ready(function(){
+        $("#search").keyup(function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "fetch/show_topic.php",
+                method: "GET",
+                data: { 
+                    data1: $("#search").val()
+                },
+                success: function(data){
+                    $("#result").html(data);
+                },
+                error: function(xhr, status, error) {
+                    alert("Error: " + xhr.status + " - " + error);
+                }
+            });
+        });
+    });
 
 

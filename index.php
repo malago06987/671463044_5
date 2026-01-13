@@ -111,10 +111,10 @@ include "./database/connectDB.php"
 
 
 
-                <div class="container-fluid">
+
 
             <?php
-            $folder_name = "images/topic/";
+            $folder_name = "assets/images/ebook/";
             $images = glob($folder_name . "*.{jpg,png,jpeg,gif}", GLOB_BRACE);
             if (count($images) > 0) {
             ?>
@@ -130,7 +130,7 @@ include "./database/connectDB.php"
                             $isFirst = false;
                         ?>
                             <div class="carousel-item <?php echo $active_class; ?>">
-                                <img src="<?php echo $image_file; ?>" class="d-block w-100" style="height: 400px; object-fit: contain; background-color: #f0f0f0;" alt="Slide Image">
+                                <img src="<?php echo $image_file; ?>" class="d-block w-100" style="height: 300px; object-fit: contain; background-color: #f0f0f0;" alt="Slide Image">
                             </div>
                         <?php
                         }
@@ -143,68 +143,72 @@ include "./database/connectDB.php"
             }
             ?>
 
+
+
             <div class="input-group mb-3 w-50 mx-auto mt-4">
                 <input type="search" class="form-control form-control-lg" id="search" placeholder="ค้นหา" aria-label="Search">
             </div>
 
 
-            <div class="row justify-content-center" id="result">
-                <?php
-                $sql = "SELECT t.*, l.lecturer_name 
-            FROM topic t 
-            LEFT JOIN lecturer l ON t.lecturer_id = l.lecturer_id
-            ORDER BY t.topic_id ASC";
-                $result = $conn->query($sql);
+            <div class="container my-4">
+<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center" id="result">
+    <?php
+    $sql = "SELECT ebooks.*, categories.category_name 
+            FROM ebooks 
+            LEFT JOIN categories ON ebooks.category_id = categories.category_id 
+            WHERE ebooks.status = 'approve' 
+            ORDER BY ebooks.created_at DESC";
+            
+    $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                ?>
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+    ?>
+           <div class="col">
+    <div class="card h-100 shadow border border-secondary-subtle">
+        <img src="assets/images/ebook/<?php echo $row['image_title']; ?>" 
+             class="card-img-top" 
+             style="height: 200px; object-fit: cover;" 
+             alt="<?php echo $row['title']; ?>">
 
-                        <div class="col-md-5 col-sm-10 mb-3 mt-3">
-                            <div class="card h-100 shadow-sm">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title text-primary fw-bold"><?php echo $row['topic_header']; ?></h5>
+        <div class="card-body d-flex flex-column">
+            <span class="badge bg-info text-dark mb-2 align-self-start">
+                <?php echo $row['category_name']; ?>
+            </span>
 
-                                    <p class="card-text text-muted small">
-                                        <?php echo mb_substr($row['topic_detail'], 0, 100, 'UTF-8') . '...'; ?>
-                                    </p>
+            <h5 class="card-title fw-bold text-truncate">
+                <?php echo $row['title']; ?>
+            </h5>
 
-                                    <ul class="list-group list-group-flush small mb-3">
-                                        <li class="list-group-item px-0">
-                                            <strong>วันที่:</strong> <?php echo $row['start']; ?> ถึง <?php echo $row['end']; ?>
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            <strong>สถานที่:</strong> <?php echo $row['place']; ?>
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            <strong>วิทยากร:</strong> <?php echo $row['lecturer_name']; ?>
-                                        </li>
-                                    </ul>
+            <p class="card-text text-muted small mb-1">
+                โดย: <?php echo $row['author']; ?>
+            </p>
 
-                                    <div class="d-flex justify-content-between mt-auto">
-                                        <a href="training_detail.php?id=<?php echo $row['topic_id']; ?>"
-                                            class="btn btn-success btn-sm w-100 text-white">
+            <p class="card-text text-muted small flex-grow-1">
+                <?php echo mb_substr($row['description'], 0, 60, 'UTF-8') . '...'; ?>
+            </p>
 
-                                            <i class="bi bi-eye"></i> ดูรายละเอียดเพิ่มเติม
-                                        </a>
-                                    </div>
+            <a href="ebook_detail.php?id=<?php echo $row['ebook_id']; ?>" 
+               class="btn btn-outline-info btn-sm w-100 mt-auto">
+                อ่านรายละเอียด
+            </a>
+        </div>
+    </div>
+</div>
 
-                                </div>
-                            </div>
-                        </div>
-
-                <?php
-                    }
-                } else {
-                    echo "<div class='col-12'><div class='alert alert-secondary text-center'>ไม่พบข้อมูลการอบรม</div></div>";
-                }
-                ?>
-
-
-            </div>
+    <?php
+        }
+    } else {
+      
+        echo "<div class='col-12'><div class='alert alert-secondary text-center'>ยังไม่มีอีบุ๊กที่ได้รับการอนุมัติในขณะนี้</div></div>";
+    }
+    ?>
+</div>
+</div>
 
 
     </main>
+
     <footer>
         <?php include "./include/footer.php" ?>
     </footer>
