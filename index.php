@@ -26,6 +26,21 @@ include "./database/connectDB.php"
     </header>
     <main>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
         <!-- เข้าสู่ระบบ-->
         <div class="modal fade" id="showLogin" tabindex="-1">
             <div class="modal-dialog ">
@@ -86,6 +101,7 @@ include "./database/connectDB.php"
 
 
 
+     
 
 
 
@@ -95,19 +111,17 @@ include "./database/connectDB.php"
 
 
 
-
- <!-- เนื้อหา-->
- <div class="container-fluid">
+                <div class="container-fluid">
 
             <?php
-            $folder_name = "assets/images/ebook/";
-            $images = glob($folder_name . "*.{jpg,png,jpeg,gif,JPG,PNG,JPEG,GIF}", GLOB_BRACE);
+            $folder_name = "images/topic/";
+            $images = glob($folder_name . "*.{jpg,png,jpeg,gif}", GLOB_BRACE);
             if (count($images) > 0) {
             ?>
                 <div id="folderCarousel"
                     class="carousel slide"
                     data-bs-ride="carousel"
-                    data-bs-interval="2000">
+                    data-bs-interval="3000">
                     <div class="carousel-inner">
                         <?php
                         $isFirst = true;
@@ -196,6 +210,7 @@ include "./database/connectDB.php"
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="assets/js.js"></script>
 
 </body>
