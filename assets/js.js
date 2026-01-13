@@ -32,7 +32,7 @@ $(document).ready(function() {
         $("#search").keyup(function(event){
             event.preventDefault();
             $.ajax({
-                url: "fetch/show_topic.php",
+                url: "fetch/search.php",
                 method: "GET",
                 data: { 
                     data1: $("#search").val()

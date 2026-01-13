@@ -1,12 +1,13 @@
 <?php
-include("database/connection.php");
+include("../database/connection.php");
 $data1 = $_GET["data1"] ?? "";
 
-           $sql = "SELECT ebooks.*
-            FROM ebooks 
-            WHERE ebooks.title = LIKE '%$data1%'
-            OR ebook.author LIKE '%$data1%'
-            ORDER BY ebooks.created_at DESC";
+$sql = "SELECT ebooks.*, categories.category_name 
+        FROM ebooks 
+        LEFT JOIN categories ON ebooks.category_id = categories.category_id 
+        WHERE ebooks.title LIKE '%$data1%'
+        OR ebooks.author LIKE '%$data1%'
+        ORDER BY ebooks.created_at DESC";
 
 $result = $conn->query($sql);
 
