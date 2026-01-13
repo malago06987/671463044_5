@@ -12,7 +12,7 @@
 <form method="POST" action="check/check_catagory.php">
     <label class="form-label fw-bold">เพิ่มหมวดหมู่</label>
     <input type="text" name="category_name" class="form-control mb-2" required> 
-    <button type="submit" name="add_category" class="btn btn-success btn-sm w-100">บันทึก</button>
+    <button type="submit" name="add_category" class="btn btn-info btn-sm w-100">บันทึก</button>
 </form>
       </div>
     </div>
@@ -91,7 +91,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="submit" name="update_category" class="btn btn-success">บันทึก</button>
+        <button type="submit" name="update_category" class="btn btn-info">บันทึก</button>
       </div>
 
     </form>

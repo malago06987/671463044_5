@@ -39,11 +39,7 @@ $sql = "SELECT ebooks.*, categories.category_name, users.user_name
                                 <td class="text-center"><?= $no ?></td>
                                 <td><?= $row["title"] ?></td>
                                 <td><?= $row["category_name"] ?></td>
-                                <td> <?php if ($row['status'] == 'approve'): ?>
-                                        <span class="badge bg-success">อนุมัติแล้ว</span>
-                                    <?php else: ?>
-                                        <span class="badge bg-warning text-dark">รอการตรวจสอบ</span>
-                                    <?php endif; ?>
+                                <td> <?= $row["status"] ?>
                                 </td>
                                 <td><?= date('d/m/Y', strtotime($row["created_at"])) ?></td>
                                 <td><?= $row["user_name"] ?></td>
@@ -62,7 +58,7 @@ $sql = "SELECT ebooks.*, categories.category_name, users.user_name
 
 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-success"
+                                    <button class="btn btn-sm btn-info"
                                         data-bs-toggle="modal"
                                         data-bs-target="#editCategoryModal"
                                         data-id="<?= $row['category_id'] ?>"

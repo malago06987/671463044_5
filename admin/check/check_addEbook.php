@@ -15,7 +15,7 @@ if (isset($_POST['add_ebook'])) {
     if (!empty($_FILES['image_title']['name'])) {
         $target_dir = "../../assets/images/ebook/"; 
         
-        $ext = pathsuccess($_FILES['image_title']['name'], PATHsuccess_EXTENSION);
+        $ext = pathinfo($_FILES['image_title']['name'], PATHinfo_EXTENSION);
         $new_name = uniqid("ebook_") . "." . $ext;
         $target_file = $target_dir . $new_name;
 

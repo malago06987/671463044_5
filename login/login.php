@@ -4,7 +4,7 @@
 <img src="./assets/images/LOGO/LOGO.png"class="rounded-circle mx-auto d-block border p-1"alt="โลโก้"width="100">
 <hr class="my-3">
   <ul class="list-group list-group-flush">
-     <form class="login-form" method="post" action="login/check/check_login.php" id="logsuccessrm">
+     <form class="login-form" method="post" action="login/check/check_login.php" id="loginform">
                   <div class="text-start mt-2">
                     <label for="login_user_name">ชื่อ</label>
                     <input type="text" name="user_name" id="login_user_name" class="form-control" placeholder="UserName" required>

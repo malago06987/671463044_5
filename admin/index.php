@@ -47,17 +47,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             </h6>
 
             <nav class="nav nav-pills flex-column gap-1">
-  <a class="nav-link  <?= ($_GET['page'] ?? 'dashboard') === 'dashboard' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=dashboard" ><i class="bi bi-tv"></i> ภาพรวม</a>
+  <a class="nav-link  <?= ($_GET['page'] ?? '1') === '1' ? 'active bg-info text-white' : 'text-dark' ?>"href="index.php?page=1" ><i class="bi bi-tv"></i> ภาพรวม</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'user' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=user"><i class="bi bi-people"></i> ผู้ใช้</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === '2' ? 'active bg-info text-white' : 'text-dark' ?>"href="index.php?page=2"><i class="bi bi-people"></i> ผู้ใช้</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'catagory' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=catagory"><i class="bi bi-tags"></i> หมวดหมู่</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === '3' ? 'active bg-info text-white' : 'text-dark' ?>"href="index.php?page=3"><i class="bi bi-tags"></i> หมวดหมู่</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'addEbook' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=addEbook"><i class="bi bi-bookmark-plus"></i> การเพิ่มอีบุค</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === '4' ? 'active bg-info text-white' : 'text-dark' ?>"href="index.php?page=4"><i class="bi bi-bookmark-plus"></i> การเพิ่มอีบุค</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'approval' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=approval"><i class="bi bi-bookmark-check"></i> การอนุมัติ</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === '5' ? 'active bg-info text-white' : 'text-dark' ?>"href="index.php?page=5"><i class="bi bi-bookmark-check"></i> การอนุมัติ</a>
 
-  <a class="nav-link <?= ($_GET['page'] ?? '') === 'report' ? 'active bg-success text-white' : 'text-dark' ?>"href="index.php?page=report"><i class="bi bi-envelope-exclamation"></i> การรายงาน</a>
+  <a class="nav-link <?= ($_GET['page'] ?? '') === '6' ? 'active bg-info text-white' : 'text-dark' ?>"href="index.php?page=6"><i class="bi bi-envelope-exclamation"></i> การรายงาน</a>
 
             </nav>
      
@@ -73,12 +73,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 $page = $_GET['page'] ?? 'dashboard';
 
 $pages = [
-  'dashboard'   => 'dashboard.php',
-  'user'      => 'user.php',
-  'catagory' => 'catagory.php',
-  'addEbook'     => 'addEbook.php',
-  'approval'    => 'approval.php',
-  'report'     => 'report.php'
+  '1'   => 'dashboard.php',
+  '2'      => 'user.php',
+  '3' => 'catagory.php',
+  '4'     => 'addEbook.php',
+  '5'    => 'approval.php',
+  '6'     => 'report.php'
 ];
 
 if (array_key_exists($page, $pages)) {

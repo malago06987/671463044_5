@@ -37,7 +37,7 @@
                         <label class="form-label">รูปหน้าปก</label>
                         <input type="file" name="image_title" class="form-control" accept="image/*" required>
                     </div>
-                    <button type="submit" name="add_ebook" class="btn btn-success w-100">บันทึกข้อมูล</button>
+                    <button type="submit" name="add_ebook" class="btn btn-info w-100">บันทึกข้อมูล</button>
                 </form>
             </div>
         </div>
@@ -83,15 +83,11 @@
                                 </td>
                                 <td><?= $row["category_name"] ?></td>
                                 <td>
-                                    <?php if($row['status'] == 'approve'): ?>
-                                        <span class="badge bg-success">อนุมัติแล้ว</span>
-                                    <?php else: ?>
-                                        <span class="badge bg-warning text-dark">รอการตรวจสอบ</span>
-                                    <?php endif; ?>
+                                <?= $row["status"] ?>
                                 </td>
                                 <td><?= date('d/m/Y', strtotime($row["created_at"])) ?></td>
                             </tr>
-                    <?php
+                    <?php       
                         }
                     } else {
                         echo "<tr><td colspan='5' class='text-center'>ยังไม่มีอีบุค</td></tr>";

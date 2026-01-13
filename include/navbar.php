@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
   <div class="container-fluid">
 
 
@@ -36,7 +36,7 @@
 
 
 
-    <div class="navbar navbar-expand-lg navbar-dark bg-success text-white" id="navbarSupportedContent">
+    <div class="navbar navbar-expand-lg navbar-dark bg-info text-white" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">หน้าหลัก</a>

@@ -53,11 +53,11 @@ $user = $result->fetch_assoc();
 <form method="POST" action="login/check/check_profile.php"  enctype="multipart/form-data" >
       <div class="text-start mt-0">
           <label>เลือกรูปภาพ:</label>
-          <input type="file" name="img_profile" class="form-control mb-2"accept="image/*"  >
+          <input type="file" name="img_profile" class="form-control mb-2"accept="image/*">
         </div>
   <div class="mb-2 text-start">
 <label class="form-label">ชื่อผู้ใช้</label>
-<input type="text" name="user_name" id="user_name"class="form-control">
+<input type="text" name="user_name" id="user_name"class="form-control" value="<?php echo $user['user_name']; ?>">
 </div>
  <div class="mb-2 text-start">
 <label class="form-label">รหัสผ่านเดิม</label>
@@ -69,7 +69,7 @@ $user = $result->fetch_assoc();
 </div>
 
 
-     <button type="submit" class="btn btn-success w-100">
+     <button type="submit" class="btn btn-info w-100">
         บันทึกการเปลี่ยนแปลง
       </button>
 
