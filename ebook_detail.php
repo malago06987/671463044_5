@@ -130,15 +130,17 @@ include "./database/connectDB.php"
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">ความคิดเห็น</label>
-                                                <textarea name="comment" class="form-control" rows="3" placeholder="เขียนรีวิวของคุณสิ" required></textarea>
-                                                <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" name="is_spoiler" value="1" id="spoilerCheck">
-                                                    <label class="form-check-label text-danger" for="spoilerCheck">
-                                                        <i class="bi bi-eye-slash"></i> รีวิวนี้มีการเปิดเผยเนื้อหา (Spoiler)
-                                                    </label>
-                                                </div>
+                                                <textarea name="comment" class="form-control" rows="3" placeholder="เขียนรีวิวของคุณสิ" required></textarea>                   
                                             </div>
-                                            <button type="submit" class="btn btn-primary">ส่งรีวิว</button>
+                                            <div class="form-check form-switch mb-3">
+                                                <input type="hidden" name="spoiler" value="NoSpoiler">
+                                                <input class="form-check-input" type="checkbox" name="spoiler" value="Spoiler" id="spoilerCheck">
+                                                <label class="form-check-label text-danger" for="spoilerCheck">
+                                                    <i class="bi bi-eye-slash"></i> รีวิวนี้มีการเปิดเผยเนื้อหา
+                                                </label>
+                                            </div>
+                                            </div>
+                                         <button type="submit" name="add_review" class="btn btn-info w-100">ส่งรีวิว</button>
                                         </form>
                                     </div>
                                 </div>
