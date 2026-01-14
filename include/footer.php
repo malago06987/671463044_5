@@ -64,10 +64,16 @@
                     </div>
                 </div>
                  <div class="col-md-5 offset-md-1 mb-3">
-                <form action="login/check/check_send.php" method="post">
-                    <h5>ส่งข้อความเพื่อให้คำเเนะนำใหม่ๆในการพัฒนาเว็บไซต์ให้ดีขึ้น</h5>
-                    <div class="d-flex flex-column flex-sm-row w-100 gap-2"> <label for="newsletter1" class="visually-hidden">Email address</label> <input id="newsletter1" type="email" class="form-control" placeholder="อธิบายสิ่งที่ต้องการ"> <button class="btn btn-primary" type="button">ส่ง</button> </div>
-                </form>
+              <form action="send_email/mail.php" method="post">
+    <h5>ส่งข้อความเพื่อให้คำแนะนำใหม่ๆ ในการพัฒนาเว็บไซต์ให้ดีขึ้น</h5>
+    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+        <input id="newsletter1" name="message" type="text" class="form-control" placeholder="อธิบายสิ่งที่ต้องการ" required>
+        
+        <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
+        
+        <button class="btn btn-primary" type="submit">ส่ง</button>
+    </div>
+</form>
             </div>
 
             </section>
