@@ -17,6 +17,8 @@ include "./database/connectDB.php"
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
         
 </head>
 
@@ -65,11 +67,15 @@ include "./database/connectDB.php"
             <div class="container my-4">
 <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center" id="result">
     <?php
-    $sql = "SELECT ebooks.*, categories.category_name 
-            FROM ebooks 
-            LEFT JOIN categories ON ebooks.category_id = categories.category_id 
-            WHERE ebooks.status = 'approve' 
-            ORDER BY ebooks.created_at DESC";
+$sql = "SELECT ebooks.*, categories.category_name, 
+               AVG(review.rating) AS avg_rating, 
+               COUNT(review.review_id) AS total_reviews
+        FROM ebooks 
+        LEFT JOIN categories ON ebooks.category_id = categories.category_id 
+        LEFT JOIN review ON ebooks.ebook_id = review.ebook_id
+        WHERE ebooks.status = 'approve' 
+        GROUP BY ebooks.ebook_id
+        ORDER BY ebooks.created_at DESC";
             
     $result = $conn->query($sql);
 
@@ -84,9 +90,23 @@ include "./database/connectDB.php"
              alt="<?php echo $row['title']; ?>">
 
         <div class="card-body d-flex flex-column">
-            <span class="badge bg-info text-dark mb-2 align-self-start">
-                <?php echo $row['category_name']; ?>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            
+    <span class="badge bg-info text-dark">
+        <?php echo $row['category_name']; ?>
+    </span>
+
+    <div class="small">
+        <?php if ($row['total_reviews'] > 0): ?>
+            <span class="text-warning">
+                <i class="bi bi-star-fill"></i> <?php echo round($row['avg_rating'], 1); ?>
             </span>
+        <?php else: ?>
+            <span class="text-muted" style="font-size: 0.75rem;">ไม่มีรีวิว</span>
+        <?php endif; ?>
+    </div>
+</div>
+
 
            <h5 class="card-title fw-bold d-block w-100">
     <?php echo $row['title']; ?>
@@ -98,7 +118,6 @@ include "./database/connectDB.php"
 
             <p class="card-text text-muted small flex-grow-1">
                <?php echo mb_substr($row['description'], 0, 100).'...'; ?>
-
             </p>
 
             <a href="ebook_detail.php?id=<?php echo $row['ebook_id']; ?>" 
@@ -125,6 +144,8 @@ include "./database/connectDB.php"
     <footer>
         <?php include "./include/footer.php" ?>
     </footer>
+
+    
     <!-- Bootstrap JavaScript Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
