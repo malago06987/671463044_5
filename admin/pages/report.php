@@ -37,7 +37,7 @@
                         <td class="text-danger fw-bold"><?= $row["report_data"] ?></td>
                         <td class="text-center"><?= date('d/m/Y', strtotime($row["created_at"])) ?></td>
                         <td class="text-center">
-                            <a href="../check/check_delete_review.php?review_id=<?= $row['review_id'] ?>&report_id=<?= $row['report_id'] ?>" 
+                            <a href="check/check_report.php?review_id=<?= $row['review_id'] ?>&report_id=<?= $row['report_id'] ?>" 
                                class="btn btn-sm btn-danger" 
                                onclick="return confirm('ยืนยันที่จะลบรีวิวนี้หรือไม่?')">
                                 ลบรีวิว

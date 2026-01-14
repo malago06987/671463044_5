@@ -1,22 +1,23 @@
 <?php
 session_start();
 include "../../database/connectDB.php";
+
 if (isset($_GET['review_id']) && isset($_GET['report_id'])) {
     $review_id = $_GET['review_id'];
     $report_id = $_GET['report_id'];
-    mysqli_begin_transaction($conn);
 
-    try {
-        $sql_report = "DELETE FROM report WHERE report_id = '$report_id'";
-        mysqli_query($conn, $sql_report);
+    $sql_report = "DELETE FROM report WHERE report_id = '$report_id'";
+    if (mysqli_query($conn, $sql_report)) {
+
         $sql_review = "DELETE FROM review WHERE review_id = '$review_id'";
-        mysqli_query($conn, $sql_review);
+        if (mysqli_query($conn, $sql_review)) {
+            echo "<script>alert('ลบคอมเม้นเรียบร้อยเเล้ว'); window.location.href='../index.php?page=6';</script>";
+        } else {
+            echo "<script>alert('ลบรีวิวไม่สำเร็จ'); window.history.back();</script>";
+        }
 
-        mysqli_commit($conn);
-        echo "<script>alert('ลบคอมเม้นเเล้ว'); window.location.href='../pages/report.php';</script>";
-    } catch (Exception $e) {
-        mysqli_rollback($conn);
-        echo "<script>alert('เกิดข้อผิดพลาด: " . $e->getMessage() . "'); window.history.back();</script>";
+    } else {
+        echo "<script>alert('ลบรายการรายงานไม่สำเร็จ'); window.history.back();</script>";
     }
 } else {
     header("Location: ../pages/report.php");
