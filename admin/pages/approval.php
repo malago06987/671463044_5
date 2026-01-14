@@ -81,7 +81,7 @@ if ($row['status'] == 'approve') {
        อนุมัติ
     </a>
 
-    <a href="check/check_approval.php?id=<?= $row['ebook_id'] ?>&status=reject" 
+    <a href="check/check_approval.php?id=<?= $row['ebook_id'] ?>&status=rejected" 
        class="btn btn-sm btn-danger" 
        onclick="return confirm('ยืนยันการไม่อนุมัติ')">
        ไม่อนุมัติ

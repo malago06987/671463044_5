@@ -6,7 +6,7 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
     $status = $_GET['status'];
 
    
-    if ($status == 'approve' || $status == 'reject') {
+    if ($status == 'approve' || $status == 'rejected') {
       
         $sql = "UPDATE ebooks SET status = '$status' WHERE ebook_id = '$id'";
 

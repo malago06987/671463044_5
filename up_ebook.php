@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "./database/connectDB.php"
 ?>
 
 <!doctype html>
@@ -30,18 +31,18 @@ session_start();
         <?php include "./include/modal.php" ?>
 
 
-
+<div class="container mt-5">
         <div class="card">
             <div class="card-header d-flex justify-content-end">
 
 
 
-                <div class="btn-group dropstart">
+                <div class="btn-group dropstart" >
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         เพิ่มอีบุคใหม่
                     </button>
                     <div class="dropdown-menu p-4" style="min-width: 350px;">
-                        <form method="POST" action="check/check_addEbook.php" enctype="multipart/form-data">
+                        <form method="POST" action="admin/check/check_addEbook.php" enctype="multipart/form-data">
                             <div class="mb-2">
                                 <label class="form-label">ชื่อเรื่อง</label>
                                 <input type="text" name="title" class="form-control" required>
@@ -81,7 +82,7 @@ session_start();
 
 
 
-            <div class="card-body">
+            <div class="card-body" >
                 <div class="table-responsive">
                     <table class="table table-hover" id="myEbookTable">
                         <thead>
@@ -95,10 +96,11 @@ session_start();
                         </thead>
                         <tbody>
                             <?php
-
+                             $user_id = $_SESSION['user_id'];
                             $sql = "SELECT ebooks.*, categories.category_name 
                             FROM ebooks 
                             LEFT JOIN categories ON ebooks.category_id = categories.category_id 
+                            WHERE ebooks.user_id = '$user_id'
                             ORDER BY ebooks.created_at DESC";
 
                             $result = mysqli_query($conn, $sql);
@@ -108,7 +110,7 @@ session_start();
                             ?>
                                     <tr class="align-middle">
                                         <td>
-                                            <img src="../assets/images/ebook/<?= $row['image_title'] ?>" width="50" class="border">
+                                            <img src="assets/images/ebook/<?= $row['image_title'] ?>" width="50" class="border">
                                         </td>
                                         <td>
                                             <div class="fw-bold"><?= $row["title"] ?></div>
@@ -146,13 +148,14 @@ session_start();
                 </div>
             </div>
         </div>
+        </div>
     </main>
     <footer>
         <!-- place footer here -->
         <?php include "./include/footer.php" ?>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
-    <script
+  <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -161,6 +164,13 @@ session_start();
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+
+
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="assets/js.js"></script> 
 </body>
 
 </html>
