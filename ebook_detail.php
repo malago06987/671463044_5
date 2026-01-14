@@ -17,6 +17,7 @@ include "./database/connectDB.php"
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         rel="stylesheet" />
+        <link rel="stylesheet" href="assets/style.css">
         
 </head>
 
@@ -88,12 +89,87 @@ $row = $result->fetch_assoc();
 <div class="mt-4">
     <hr>
     <h2>รีวิวทั้งหมด</h2>
-<?php if (
-    isset($_SESSION['role']) &&($_SESSION['role'] == 'user' || $_SESSION['role'] == 'admin')): ?>
+   <?php if 
+   (isset($_SESSION['role']) && ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'admin')): ?>
+        <div class="card mb-4 border-0 shadow-sm bg-light">
+            <div class="card-body">
+                <h5 class="fw-bold">เขียนรีวิวของคุณ</h5>
+                <form action="add_review.php" method="POST">
+                    <input type="hidden" name="ebook_id" value="<?php echo $ebook_id; ?>">
+              <div class="wrapper">
+    <form action=# name="star-rating-form">
+        <h2 id="title" class="call-to-action-text">ให้คะเเนนอีบุ๊ค:</h2>
+        <div class="star-wrap">
+            <input class="star" checked type="radio" value="-1" id="skip-star" name="star-radio" autocomplete="off" />
+            <label class="star-label hidden"></label>
+            <input class="star" type="radio" id="st-1" value="1" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-1">
+                <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-2" value="2" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-2">
+                <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-3" value="3" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-3">
+                <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-4" value="4" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-4">
+                <div class="star-shape"></div>
+            </label>
+            <input class="star" type="radio" id="st-5" value="5" name="star-radio" autocomplete="off" />
+            <label class="star-label" for="st-5">
+                <div class="star-shape"></div>
+            </label>
+            <label class="skip-button" for="skip-star">
+                ×
+            </label>
+        </div>
+    </form>
+    <p id="result">ไม่ได้ถูกเลือก</p>
+</div>
+                    <div class="mb-3">
+                        <label class="form-label">ความคิดเห็น</label>
+                        <textarea name="comment" class="form-control" rows="3" placeholder="เขียนความประทับใจของคุณที่นี่..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ส่งรีวิว</button>
+                </form>
+            </div>
+        </div>
 
+        <?php
+        $rev_sql = "SELECT review.*, users.user_name, users.img_user 
+                    FROM review 
+                    JOIN users ON review.user_id = users.user_id 
+                    WHERE review.ebook_id = '$ebook_id' 
+                    ORDER BY review.created_at DESC";
+        $rev_result = $conn->query($rev_sql);
 
-<?php echo basename(__FILE__); ?>
-
+        if ($rev_result->num_rows > 0):
+            while ($rev = $rev_result->fetch_assoc()):
+        ?>
+            <div class="d-flex mb-4 p-3 border-bottom">
+                <div class="flex-shrink-0">
+                    <img src="assets/images/profile/<?php echo $rev['img_user'] ?: 'default.png'; ?>" 
+                         class="rounded-circle border" width="50" height="50" style="object-fit: cover;">
+                </div>
+                <div class="ms-3">
+                    <h6 class="fw-bold mb-0"><?php echo htmlspecialchars($rev['user_name']); ?></h6>
+                    <div class="text-warning mb-1">
+                        <?php for($i=1; $i<=5; $i++) echo $i <= $rev['rating'] ? '★' : '☆'; ?>
+                        <span class="text-muted small">(<?php echo $rev['rating']; ?>/5)</span>
+                    </div>
+                    <p class="mb-1"><?php echo nl2br(htmlspecialchars($rev['comment'])); ?></p>
+                    <small class="text-muted">รีวิวเมื่อ: <?php echo date('d/m/Y H:i', strtotime($rev['created_at'])); ?></small>
+                </div>
+            </div>
+        <?php 
+            endwhile;
+        else:
+            echo '<p class="text-center text-muted">ยังไม่มีรีวิวสำหรับหนังสือเล่มนี้ เป็นคนแรกที่เริ่มรีวิวเลย!</p>';
+        endif;
+        ?>
 
 <?php else: ?>
 
