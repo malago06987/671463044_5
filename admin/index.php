@@ -70,7 +70,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <div class="col-12 col-md-9 col-lg-10 p-4">
 
 <?php
-$page = $_GET['page'] ?? 'dashboard';
+$page = $_GET['page'] ?? '1';
 
 $pages = [
   '1'   => 'dashboard.php',
