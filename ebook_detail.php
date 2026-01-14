@@ -201,28 +201,30 @@ include "./database/connectDB.php"
 <div class="d-flex">
                                         <button class="btn btn-sm btn-link text-danger p-0 ms-auto"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#reportModal"
+                                            data-bs-target="#reportModal<?php echo $review['review_id']; ?>"
                                             data-review-id="<?php echo $review['review_id']; ?>">
                                             <i class="bi bi-flag-fill"></i> รายงาน
                                         </button>
 
 
-
-<div class="modal fade" tabindex="-1" id="reportModal">
+<div class="modal fade" tabindex="-1" id="reportModal<?php echo $review['review_id']; ?>">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">รายงานความเห็นไม่เหมาะสม</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>โปรดระบุเหตุผลที่คุณต้องการรายงานรีวิวนี้:</p>
-        <textarea class="form-control" rows="4" placeholder="รายละเอียด"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-        <button type="button" class="btn btn-primary">ส่งการรายงาน</button>
-      </div>
+      <form action="login/check/check_report.php" method="POST"> 
+        <div class="modal-header">
+          <h5 class="modal-title">รายงานความเห็นไม่เหมาะสม</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="review_id" value="<?php echo $review['review_id']; ?>">  
+          <p>รายงานมัน:</p>
+          <textarea name="report_data" class="form-control" rows="4" placeholder="ระบุเหตุผล" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+          <button type="submit" name="report" class="btn btn-danger">ส่งการรายงาน</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
