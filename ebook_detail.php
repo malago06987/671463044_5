@@ -76,7 +76,6 @@ include "./database/connectDB.php"
                                 <span class="ms-2"><?php echo $row['category_name']; ?></span>
                             </div>
 
-
                             <div class="d-grid gap-2 d-md-block">
                                 <a href="index.php" class="btn btn-outline-secondary">
                                     <i class="bi bi-arrow-left"></i> ย้อนกลับ
@@ -96,41 +95,41 @@ include "./database/connectDB.php"
                                         <form action="login/check/check_review.php" method="POST">
                                             <input type="hidden" name="ebook_id" value="<?php echo $ebook_id; ?>">
                                             <div class="wrapper">
-                                                
-                                                    <h2 id="title" class="call-to-action-text">ให้คะเเนนอีบุ๊ค:</h2>
-                                                    <div class="star-wrap">
-                                                        <input class="star" checked type="radio" value="-1" id="skip-star" name="star-radio" autocomplete="off" />
-                                                        <label class="star-label hidden"></label>
-                                                        <input class="star" type="radio" id="st-1" value="1" name="star-radio" autocomplete="off" />
-                                                        <label class="star-label" for="st-1">
-                                                            <div class="star-shape"></div>
-                                                        </label>
-                                                        <input class="star" type="radio" id="st-2" value="2" name="star-radio" autocomplete="off" />
-                                                        <label class="star-label" for="st-2">
-                                                            <div class="star-shape"></div>
-                                                        </label>
-                                                        <input class="star" type="radio" id="st-3" value="3" name="star-radio" autocomplete="off" />
-                                                        <label class="star-label" for="st-3">
-                                                            <div class="star-shape"></div>
-                                                        </label>
-                                                        <input class="star" type="radio" id="st-4" value="4" name="star-radio" autocomplete="off" />
-                                                        <label class="star-label" for="st-4">
-                                                            <div class="star-shape"></div>
-                                                        </label>
-                                                        <input class="star" type="radio" id="st-5" value="5" name="star-radio" autocomplete="off" />
-                                                        <label class="star-label" for="st-5">
-                                                            <div class="star-shape"></div>
-                                                        </label>
-                                                        <label class="skip-button" for="skip-star">
-                                                            ×
-                                                        </label>
-                                                    </div>
-                                                
+
+                                                <h2 id="title" class="call-to-action-text">ให้คะเเนนอีบุ๊ค:</h2>
+                                                <div class="star-wrap">
+                                                    <input class="star" checked type="radio" value="-1" id="skip-star" name="star-radio" autocomplete="off" />
+                                                    <label class="star-label hidden"></label>
+                                                    <input class="star" type="radio" id="st-1" value="1" name="star-radio" autocomplete="off" />
+                                                    <label class="star-label" for="st-1">
+                                                        <div class="star-shape"></div>
+                                                    </label>
+                                                    <input class="star" type="radio" id="st-2" value="2" name="star-radio" autocomplete="off" />
+                                                    <label class="star-label" for="st-2">
+                                                        <div class="star-shape"></div>
+                                                    </label>
+                                                    <input class="star" type="radio" id="st-3" value="3" name="star-radio" autocomplete="off" />
+                                                    <label class="star-label" for="st-3">
+                                                        <div class="star-shape"></div>
+                                                    </label>
+                                                    <input class="star" type="radio" id="st-4" value="4" name="star-radio" autocomplete="off" />
+                                                    <label class="star-label" for="st-4">
+                                                        <div class="star-shape"></div>
+                                                    </label>
+                                                    <input class="star" type="radio" id="st-5" value="5" name="star-radio" autocomplete="off" />
+                                                    <label class="star-label" for="st-5">
+                                                        <div class="star-shape"></div>
+                                                    </label>
+                                                    <label class="skip-button" for="skip-star">
+                                                        ×
+                                                    </label>
+                                                </div>
+
 
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">ความคิดเห็น</label>
-                                                <textarea name="comment" class="form-control" rows="3" placeholder="เขียนรีวิวของคุณสิ" required></textarea>                   
+                                                <textarea name="comment" class="form-control" rows="3" placeholder="เขียนรีวิวของคุณสิ" required></textarea>
                                             </div>
                                             <div class="form-check form-switch mb-3">
                                                 <input type="hidden" name="spoiler" value="NoSpoiler">
@@ -139,13 +138,13 @@ include "./database/connectDB.php"
                                                     <i class="bi bi-eye-slash"></i> รีวิวนี้มีการเปิดเผยเนื้อหา
                                                 </label>
                                             </div>
-                                            </div>
-                                         <button type="submit" name="add_review" class="btn btn-info w-100">ส่งรีวิว</button>
-                                        </form>
                                     </div>
+                                    <button type="submit" name="add_review" class="btn btn-info w-100">ส่งรีวิว</button>
+                                    </form>
                                 </div>
+                        </div>
 
-                                <?php
+                        <?php
                                 $review_sql = "SELECT review.*, users.user_name, users.img_user 
                     FROM review 
                     JOIN users ON review.user_id = users.user_id 
@@ -155,63 +154,122 @@ include "./database/connectDB.php"
 
                                 if ($comment->num_rows > 0):
                                     while ($review = $comment->fetch_assoc()):
-                                ?>
-                                        <div class="d-flex mb-4 p-3 border-bottom">
-                                            <div class="flex-shrink-0">
-                                                <img src="assets/images/profile/<?php echo $review['img_user']; ?>"
-                                                    class="rounded-circle border" width="50" height="50" style="object-fit: cover;">
-                                            </div>
-                                            <div class="ms-3">
-                                                <h6 class="fw-bold mb-0"><?php echo htmlspecialchars($review['user_name']); ?></h6>
-                                                <div class="text-warning mb-1">
-                                                    <?php
-                                                    for ($i = 1; $i <= 5; $i++) {
+                        ?>
+                                <div class="d-flex mb-4 p-3 border-bottom">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/images/profile/<?php echo $review['img_user']; ?>"
+                                            class="rounded-circle border" width="50" height="50" style="object-fit: cover;">
+                                    </div>
+                                    <div class="ms-3 w-100">
+                                        <h6 class="fw-bold mb-0"><?php echo $review['user_name']; ?></h6>
 
-                                                        if ($i <= $review['rating']) {
-                                                            echo '★';
-                                                        } else {
-                                                            echo '☆';
-                                                        }
-                                                    }
-                                                    ?>
+                                        <div class="text-warning mb-1">
+                                            <?php
+                                            for ($i = 1; $i <= 5; $i++) {
 
-                                                    <span class="text-muted small">(<?php echo $review['rating']; ?>/5)</span>
-                                                </div>
-                                                <p class="mb-1"><?php echo nl2br(htmlspecialchars($review['comment'])); ?></p>
-                                                <small class="text-muted">รีวิวเมื่อ: <?php echo date('d/m/Y', strtotime($review['created_at'])); ?></small>
-                                                <small class="text-muted">เวลา: <?php echo date('H:i', strtotime($review['created_at'])); ?></small>
-                                            </div>
+                                                if ($i <= $review['rating']) {
+                                                    echo '★';
+                                                } else {
+                                                    echo '☆';
+                                                }
+                                            }
+                                            ?>
+                                            <span class="text-muted small"><?php echo $review['rating']; ?></span>
                                         </div>
-                                <?php
+
+                                        <?php if (isset($review['Spoiler']) && $review['Spoiler'] == 'Spoiler'): ?>
+                                            <div class="spoiler-box">
+                                                <button class="btn btn-sm btn-outline-danger mb-2"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#spoiler-<?php echo $review['review_id']; ?>">
+                                                    <i class="bi bi-eye-slash"></i> คลิกเพื่อดูเนื้อหาสปอย
+                                                </button>
+
+                                                <div class="collapse" id="spoiler-<?php echo $review['review_id']; ?>">
+                                                    <div class="card card-body bg-light border-danger mb-2">
+                                                        <?php echo ($review['comment']); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php else: ?>
+                                            <p class="mb-1"><?php echo ($review['comment']); ?></p>
+                                        <?php endif; ?>
+                                        <small class="text-muted">รีวิวเมื่อ: <?php echo date('d/m/Y', strtotime($review['created_at'])); ?></small>
+                                        <small class="text-muted">เวลา: <?php echo date('H:i', strtotime($review['created_at'])); ?></small>
+
+<div class="d-flex">
+                                        <button class="btn btn-sm btn-link text-danger p-0 ms-auto"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#reportModal"
+                                            data-review-id="<?php echo $review['review_id']; ?>">
+                                            <i class="bi bi-flag-fill"></i> รายงาน
+                                        </button>
+
+
+
+<div class="modal fade" tabindex="-1" id="reportModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">รายงานความเห็นไม่เหมาะสม</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>โปรดระบุเหตุผลที่คุณต้องการรายงานรีวิวนี้:</p>
+        <textarea class="form-control" rows="4" placeholder="รายละเอียด"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary">ส่งการรายงาน</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+                                        
+
+</div>
+                                    </div>
+                                </div>
+                        <?php
                                     endwhile;
                                 else:
                                     echo '<p class="text-center text-muted">ยังไม่มีรีวิวสำหรับหนังสือเล่มนี้</p>';
                                 endif;
-                                ?>
+                        ?>
 
-                            <?php else: ?>
-
-
-                                <div class="">
-
-                                    <div class="text-center">
-                                        <a href="#"
-                                            class="btn btn-primary btn-lg fw-semibold px-5 shadow-sm"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#showLogin">
-                                            เข้าสู่ระบบเพื่อเขียนเเละอ่านรีวิว
-                                        </a>
-                                    </div>
-
-                                </div>
+                    <?php else: ?>
 
 
-                            <?php endif; ?>
+                        <div class="">
+
+                            <div class="text-center">
+                                <a href="#"
+                                    class="btn btn-primary btn-lg fw-semibold px-5 shadow-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#showLogin">
+                                    เข้าสู่ระบบเพื่อเขียนเเละอ่านรีวิว
+                                </a>
+                            </div>
 
                         </div>
+
+
+                    <?php endif; ?>
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </main>
