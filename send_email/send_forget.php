@@ -1,9 +1,9 @@
 <?php
-
-$recieve=$_POST['email'];
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
+
+$recieve=$_POST['email'];
 $mail = new PHPMailer(true);
 try {
     // ---------------- SMTP SETTINGS ----------------

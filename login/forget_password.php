@@ -18,7 +18,7 @@
         class="form-control mb-3"
         id="email"
         name="email"
-        placeholder="name@example.com"
+        placeholder="กรอกอีเมล"
         required>
 
       <button type="submit" class="btn btn-primary w-100">
