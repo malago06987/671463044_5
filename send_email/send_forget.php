@@ -1,13 +1,9 @@
 <?php
+
+$recieve=$_POST['email'];
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
-
-$userEmail = $_POST['email'];
-$message   = $_POST['message'];
-
-
-$recieve=$_POST['email'];
 $mail = new PHPMailer(true);
 try {
     // ---------------- SMTP SETTINGS ----------------
@@ -20,27 +16,18 @@ try {
     $mail->Port       = 587; // 
 
     $mail->CharSet  = 'UTF-8';
-    
     $mail->Encoding = 'base64';
     // ---------------- SENDER ----------------
-    $mail->setFrom('671463044@crru.ac.th', 'เว็บไซต์อีบุค');
-
-    
-     $mail->addAddress('671463044@crru.ac.th', 'ผู้ดูแลระบบ');
-      $mail->addReplyTo($userEmail);
+    $mail->setFrom('671463044@crru.ac.th', 'ระบบแจ้งเตือน');
+    $mail->addAddress($recieve, 'ผู้รับ');
     // ---------------- CONTENT ----------------
     $mail->isHTML(true);
-    $mail->Subject = 'คำเเนะนำจากผู้ใช้';
-    $mail->Body = "
-        <h3>มีข้อความใหม่จากผู้ใช้</h3>
-        <p><b>อีเมลผู้ส่ง:</b> {$userEmail}</p>
-        <p><b>ข้อความ:</b></p>
-        <p>{$message}</p>
-    ";
-    $mail->AltBody = 'เมลทดสอบจาก PHP';
+    $mail->Subject = 'ลืมรหัสผ่าน';
+    $mail->Body    = 'คลิกลิ้งค์นี้เพื่อเปลี่ยนรหัสผ่านของคุณ: <a href="http://localhost/671463044_5/reset_password.php?email='.$recieve.'">เปลี่ยนรหัสผ่าน</a>';
+    $mail->AltBody = 'ระบบแจ้งเตือนลืมรหัสผ่าน';
     $mail->send();
     echo "<script>
-                    alert('ส่งหาผู้พัมนาเเว้ว!'); 
+                    alert('ดูอีเมลเพื่อเปลี่ยนรหัสผ่าน!'); 
                     window.location.href='../index.php';
                   </script>";
 } catch (Exception $e) {
