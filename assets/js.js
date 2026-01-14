@@ -48,24 +48,5 @@ $(document).ready(function() {
     });
 
 
-    //ให้ดาว
-      function displayValue() {
-  starVal = document.forms["star-rating-form"]["star-radio"].value;
-  if (starVal == -1) {
-  document.getElementById("result").innerText = "ไม่ได้ถูกเลือก";
-  } else {
-  document.getElementById("result").innerText =
-  "คุณเลือก: " + starVal +
-  " จาก 5.";
-  }
-  }
-  document.addEventListener("DOMContentLoaded", () => {
-  displayValue();
-  document.forms["star-rating-form"]["star-radio"].forEach((star) => {
-  star.addEventListener("change", () => {
-  displayValue();
-  });
-  });
-  });
 
 
